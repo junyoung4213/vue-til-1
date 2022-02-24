@@ -1,14 +1,16 @@
 <template>
   <form @submit.prevent="submitForm">
     <div>
-      <label for="">id: </label>
+      <label for="username">id: </label>
       <input type="text" id="username" v-model="username" />
     </div>
     <div>
       <label for="password">pw: </label>
       <input type="text" id="password" v-model="password" />
     </div>
-    <button type="submit">로그인</button>
+    <button v-bind:disabled="!isUsernameValid || !password" type="submit">
+      로그인
+    </button>
     <p>{{ logMessage }}</p>
   </form>
 </template>
@@ -26,6 +28,11 @@ export default {
       // log message
       logMessage: '',
     };
+  },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
   },
   methods: {
     async submitForm() {
