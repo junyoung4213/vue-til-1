@@ -39,7 +39,7 @@ export default {
         this.initForm();
       } catch (error) {
         // 에러 핸들링할 코드
-        console.log(error.response.data);
+        // console.log(error.response.data);
         this.logMessage = error.response.data;
       }
     },
