@@ -12,6 +12,7 @@ describe('LoginForm.vue', () => {
       },
     });
     const idInput = wrapper.find('#username');
-    console.log(idInput.element.value);
+    console.log('인풋 박스의 값 ', idInput.element.value);
+    console.log(wrapper.vm.isUsernameValid);
   });
 });
