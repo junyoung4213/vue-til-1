@@ -5,6 +5,11 @@
         <div>
           <label for="username">id: </label>
           <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
         </div>
         <div>
           <label for="password">pw: </label>
@@ -23,6 +28,7 @@
 
 <script>
 import { registerUser } from '@/api/auth';
+import { validateEmail } from '@/utils/validation';
 
 export default {
   data() {
@@ -34,6 +40,11 @@ export default {
       // log
       logMessage: '',
     };
+  },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
   },
   methods: {
     async submitForm() {
